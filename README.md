@@ -5,16 +5,37 @@ API REST propositalmente simplificada para atividade de **analise e correcao de 
 ## Requisitos
 - Node.js 20 ou superior
 - Docker Desktop / Docker Compose
-- Postman ou Insomnia (opcional)
+- Postman ou Insomnia
 
 ## Iniciar
-1. Copie `.env.example` para `.env` (PowerShell: `Copy-Item .env.example .env`; bash: `cp .env.example .env`).
-2. Inicie o banco: `docker compose up -d`
-3. Instale dependencias: `npm install`
-4. Inicie: `npm run dev` (ou `npm start`)
-5. Abra `http://127.0.0.1:3000/health`
+Siga os passos na pasta em que deseja salvar o projeto:
 
-**Nota:** a porta 5432 precisa estar livre no computador. Se estiver ocupada, troque a porta do host em `docker-compose.yml` e a porta correspondente na `DATABASE_URL` de `.env`.
+1. Clone o repositorio:
+   ```bash
+   git clone https://github.com/profalonsogui/api-ecommerce-vulnerable.git
+   cd api-ecommerce-vulnerable
+   ```
+2. Instale as dependencias:
+   ```bash
+   npm install
+   ```
+3. Crie o arquivo `.env` a partir do exemplo (PowerShell: `Copy-Item .env.example .env`; bash: `cp .env.example .env`) e configure estes valores:
+   ```env
+   PORT=3000
+   DATABASE_URL=postgres://lab_user:lab_password@127.0.0.1:5435/ecommerce_lab
+   ```
+4. Inicie o banco de dados com Docker:
+   ```bash
+   docker compose up -d
+   ```
+5. Inicie a API:
+   ```bash
+   npm run dev
+   ```
+   Para iniciar sem modo de desenvolvimento, use `npm start`.
+6. Abra `http://127.0.0.1:3000/health` no navegador.
+
+**Nota:** a porta 5435 do computador precisa estar livre. Se estiver ocupada, troque a porta do host em `docker-compose.yml` e a porta correspondente na `DATABASE_URL` de `.env`.
 
 ## Endpoints
 | Metodo | Caminho | Descricao |
